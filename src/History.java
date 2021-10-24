@@ -5,10 +5,10 @@ public class History {
     public Customer customer;
     public LocalDate purchase;
     
-    public History(Product product, Customer customer, LocalDate purchase) {
+    public History(Product product, Customer customer) {
         this.product = product;
         this.customer = customer;
-        this.purchase = purchase;
+        this.purchase = LocalDate.now();
     }
 
     public Product getProduct() {

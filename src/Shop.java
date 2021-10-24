@@ -79,9 +79,6 @@ public class Shop {
                 }
             }else if (choise == 5){
                 //Совершить покупку
-                // product
-                // customer
-                // purchase
                 if (products[0] == null || customers[0] == null) {
                     System.out.println("\nОперация невозможна\n");
                 }else{
@@ -102,14 +99,12 @@ public class Shop {
                         int customerChoise = scanner.nextInt();
                         //----- Выбор покупателя -----
                         if (customers[customerChoise].getWallet() >= products[productChoise].getPrice()) {
-                            LocalDate purchase = LocalDate.now();
-                        }else{
+                            historys[countOfHistorys] = new History(products[productChoise], customers[customerChoise]);
+                            customers[customerChoise].setWallet(customers[customerChoise].getWallet() - products[productChoise].getPrice());
+                            countOfHistorys++;
+                        } else{
                             System.out.println("Недостаточно денег");
                         }
-                        historys[countOfHistorys] = new History(products[productChoise], customers[customerChoise], purchase);
-                        customers[customerChoise].setWallet(customers[customerChoise].getWallet() - products[productChoise].getPrice());
-                        countOfHistorys++;
-
                     } else {
                         System.out.println("\nМаксимальное количество покупок\n");
                     }

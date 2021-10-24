@@ -1,4 +1,5 @@
-import java.time.LocalDate;
+import entitys.*;
+
 import java.util.Scanner;
 
 public class Shop {
@@ -22,9 +23,9 @@ public class Shop {
                 //Добавить товар
                 if (countOfProducts != products.length+1) {
                     System.out.print("Название: ");
-                    String title = scanner.nextLine();
+                    String title = scanner.next();
                     System.out.print("Категория: ");
-                    String category = scanner.nextLine();
+                    String category = scanner.next();
                     System.out.print("Цена: ");
                     Double price = scanner.nextDouble();
                     
@@ -51,11 +52,11 @@ public class Shop {
                 //Добавить покупателя
                 if (countOfCustomers != customers.length+1) {
                     System.out.print("Имя: ");
-                    String firstname = scanner.nextLine();
+                    String firstname = scanner.next();
                     System.out.print("Фамилия: ");
-                    String surename = scanner.nextLine();
+                    String surename = scanner.next();
                     System.out.print("Телефон: ");
-                    String phoneNumber = scanner.nextLine();
+                    String phoneNumber = scanner.next();
                     System.out.print("Счет: ");
                     Double wallet = scanner.nextDouble();
                     

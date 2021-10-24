@@ -1,3 +1,5 @@
+package entitys;
+
 import java.time.LocalDate;
 
 public class History {

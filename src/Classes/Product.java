@@ -1,16 +1,28 @@
-package entitys;
+package Classes;
 
-public class Product {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Product implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String title;
     private String category;
     private double price;
 
-    public Product(String title, String category, double price) {
-        this.title = title;
-        this.category = category;
-        this.price = price;
+    public Long getId() {
+        return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     public String getTitle() {
         return title;
     }

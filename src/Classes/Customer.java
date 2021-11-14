@@ -1,18 +1,28 @@
-package entitys;
+package Classes;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Customer {
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String firstname;
     private String surename;
     private String phoneNumber;
     private double wallet;
-    
-    public Customer(String firstname, String surename, String phoneNumber, double wallet) {
-        this.firstname = firstname;
-        this.surename = surename;
-        this.phoneNumber = phoneNumber;
-        this.wallet = wallet;
+
+    public Long getId() {
+        return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     public String getFirstname() {
         return firstname;
     }

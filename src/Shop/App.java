@@ -1,3 +1,5 @@
+package Shop;
+
 
 import Classes.Customer;
 import Classes.History;
@@ -40,7 +42,7 @@ public class App {
                     + "6) Вывести список покупок");
             
             System.out.print("Опция -->");
-            int choise = scanner.nextInt();
+            int choise = inputInt();
 
             switch (choise){
                 case 0:
@@ -150,7 +152,7 @@ public class App {
         for (int i = 0; i < productsArray.size(); i++) {
             System.out.println(i + productsArray.get(i).getTitle() + productsArray.get(i).getPrice()+"€");
         }
-        int productChoise = scanner.nextInt();
+        int productChoise = inputInt();
         //----- Выбор товара -----
 
         //----- Выбор покупателя -----
@@ -158,7 +160,7 @@ public class App {
         for (int i = 0; i < customersArray.size(); i++) {
             System.out.println(customersArray.get(i).getFirstname() + customersArray.get(i).getWallet()+"€");
         }
-        int customerChoise = scanner.nextInt();
+        int customerChoise = inputInt();
         //----- Выбор покупателя -----
 
         if (customersArray.get(customerChoise).getWallet() >= productsArray.get(productChoise).getPrice()) {
@@ -172,5 +174,17 @@ public class App {
         }
         
         return history;
+    }
+    
+    private int inputInt() {
+	do {
+            try {
+                String inputedNumber = scanner.next();
+                return Integer.parseInt(inputedNumber);
+            } catch(Exception e) {
+                System.out.println("Введены неверные данные.");
+                System.out.print("Попробуйте еще раз -->");
+            }
+	} while(true);
     }
 }

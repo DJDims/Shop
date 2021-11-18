@@ -1,6 +1,5 @@
 package Shop;
 
-
 import Classes.Customer;
 import Classes.History;
 import Classes.Product;
@@ -32,14 +31,7 @@ public class App {
         
     public void run(){
         while (appRunning) {
-            System.out.println("Выберите опцию\n"
-                    + "0) Выход\n"
-                    + "1) Добавить товар\n"
-                    + "2) Вывести список товаров\n"
-                    + "3) Добавить покупателя\n"
-                    + "4) Вывести список покупателей\n"
-                    + "5) Совершить покупку\n"
-                    + "6) Вывести список покупок");
+            showHints();
             
             System.out.print("Опция -->");
             int choise = inputInt();
@@ -53,70 +45,49 @@ public class App {
                     
                 case 1:
                     //Добавить товар
-                    productsArray.add(addProduct());
-                    keeping.saveProducts(productsArray);
+                    addProduct();
                     break;
                     
                 case 2:
                     //Вывести список товаров
-                    if (!productsArray.isEmpty()) {
-                        System.out.println("---------- Список товаров ----------");
-                        for (int i = 0; i < productsArray.size(); i++) {
-                            System.out.println(productsArray.get(i).toString());
-                        }
-                        System.out.println("---------- Список товаров ----------");
-                        
-                    } else {
-                        System.out.println("\nНет добавленных товаров\n");
-                    }
+                    showProducts();
                     break;
                     
                 case 3:
                     //Добавить покупателя
-                    customersArray.add(addCustomer());
-                    keeping.saveCustomers(customersArray);
+                    addCustomer();
                     break;
                     
                 case 4:
                     //Вывести список покупателей
-                    if (!customersArray.isEmpty()) {
-                        System.out.println("---------- Список покупателей ----------");
-                        for (int i = 0; i < customersArray.size(); i++) {
-                            System.out.println(customersArray.get(i).toString());
-                        }
-                        System.out.println("---------- Список покупателей ----------");
-                    } else {
-                        System.out.println("\nНет добавленных покупателей\n");
-                    }
+                    showCustomers();
                     break;
                     
                 case 5:
                     //Совершить покупку
-                    if (!productsArray.isEmpty() || !customersArray.isEmpty()) {
-                        historysArray.add(addHistory());
-                        keeping.saveHistorys(historysArray);
-                    } else {  
-                        System.out.println("\nОперация невозможна\n");
-                    }
+                    addHistory();
                     break;
                     
                 case 6:
                     //Вывести список покупок
-                    if (!historysArray.isEmpty()) {
-                        System.out.println("---------- Список историй покупок ----------");
-                        for (int i = 0; i < historysArray.size(); i++) {
-                            System.out.println(historysArray.get(i).toString());
-                        }
-                        System.out.println("---------- Список историй покупок ----------");
-                    } else {
-                        System.out.println("\nНет добавленных историй покупок\n");
-                    }
+                    showHistorys();
                     break;
             }
         }
     }
     
-    private Product addProduct(){
+    private void showHints(){
+        System.out.println("Выберите опцию");
+        System.out.println("0) Выход");
+        System.out.println("1) Добавить товар");
+        System.out.println("2) Вывести список товаров");
+        System.out.println("3) Добавить покупателя");
+        System.out.println("4) Вывести список покупателей");
+        System.out.println("5) Совершить покупку");
+        System.out.println("6) Вывести список покупок");
+    }
+    
+    private void addProduct(){
         Product product = new Product();
         
         System.out.print("Название: ");
@@ -126,10 +97,24 @@ public class App {
         System.out.print("Цена: ");
         product.setPrice(scanner.nextDouble());
         
-        return product;
+        productsArray.add(product);
+        keeping.saveProducts(productsArray);
     }
     
-    private Customer addCustomer(){
+    private void showProducts(){
+        if (!productsArray.isEmpty()) {
+            System.out.println("---------- Список товаров ----------");
+            for (int i = 0; i < productsArray.size(); i++) {
+                System.out.println(productsArray.get(i).toString());
+            }
+            System.out.println("---------- Список товаров ----------");
+
+        } else {
+            System.out.println("\nНет добавленных товаров\n");
+        }
+    }
+    
+    private void addCustomer(){
         Customer customer = new Customer();
         
         System.out.print("Имя: ");
@@ -141,39 +126,70 @@ public class App {
         System.out.print("Счет: ");
         customer.setWallet(scanner.nextDouble());
         
-        return customer;
+        customersArray.add(customer);
+        keeping.saveCustomers(customersArray);
     }
     
-    private History addHistory(){
-        History history = new History();
-        
-        //----- Выбор товара -----
-        System.out.println("Выберите товар");
-        for (int i = 0; i < productsArray.size(); i++) {
-            System.out.println(i + productsArray.get(i).getTitle() + productsArray.get(i).getPrice()+"€");
+    private void showCustomers(){
+        if (!customersArray.isEmpty()) {
+            System.out.println("---------- Список покупателей ----------");
+            for (int i = 0; i < customersArray.size(); i++) {
+                System.out.println(customersArray.get(i).toString());
+            }
+            System.out.println("---------- Список покупателей ----------");
+        } else {
+            System.out.println("\nНет добавленных покупателей\n");
         }
-        int productChoise = inputInt();
-        //----- Выбор товара -----
+    }
+    
+    private void addHistory(){
+        if (!productsArray.isEmpty() || !customersArray.isEmpty()) {
+            History history = new History();
 
-        //----- Выбор покупателя -----
-        System.out.println("Выберите покупателя");
-        for (int i = 0; i < customersArray.size(); i++) {
-            System.out.println(customersArray.get(i).getFirstname() + customersArray.get(i).getWallet()+"€");
-        }
-        int customerChoise = inputInt();
-        //----- Выбор покупателя -----
+            //----- Выбор товара -----
+            System.out.println("Выберите товар");
+            for (int i = 0; i < productsArray.size(); i++) {
+                System.out.println(i + productsArray.get(i).getTitle() + productsArray.get(i).getPrice()+"€");
+            }
+            int productChoise = inputInt();
+            //----- Выбор товара -----
 
-        if (customersArray.get(customerChoise).getWallet() >= productsArray.get(productChoise).getPrice()) {
-            history.setCustomer(customersArray.get(customerChoise));
-            history.setProduct(productsArray.get(productChoise));
-            history.setPurchase(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            
-            customersArray.get(customerChoise).setWallet( customersArray.get(customerChoise).getWallet() -  productsArray.get(productChoise).getPrice());
-        } else{
-            System.out.println("Недостаточно денег");
+            //----- Выбор покупателя -----
+            System.out.println("Выберите покупателя");
+            for (int i = 0; i < customersArray.size(); i++) {
+                System.out.println(customersArray.get(i).getFirstname() + customersArray.get(i).getWallet()+"€");
+            }
+            int customerChoise = inputInt();
+            //----- Выбор покупателя -----
+
+            if (customersArray.get(customerChoise).getWallet() >= productsArray.get(productChoise).getPrice()) {
+                history.setCustomer(customersArray.get(customerChoise));
+                history.setProduct(productsArray.get(productChoise));
+                history.setPurchase(Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+
+                customersArray.get(customerChoise).setWallet(customersArray.get(customerChoise).getWallet() -  productsArray.get(productChoise).getPrice());
+
+                historysArray.add(history);
+                keeping.saveHistorys(historysArray);
+                keeping.saveCustomers(customersArray);
+            } else{
+                System.out.println("Недостаточно денег");
+            }
+        } else {  
+            System.out.println("\nОперация невозможна\n");
         }
-        
-        return history;
+    }
+    
+    private void showHistorys(){
+        if (!historysArray.isEmpty()) {
+            System.out.println("---------- Список историй покупок ----------");
+            for (int i = 0; i < historysArray.size(); i++) {
+                System.out.println(historysArray.get(i).toString());
+            }
+            System.out.println("---------- Список историй покупок ----------");
+        } else {
+            System.out.println("\nНет добавленных историй покупок\n");
+        }
     }
     
     private int inputInt() {

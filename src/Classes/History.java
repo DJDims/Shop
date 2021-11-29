@@ -56,7 +56,7 @@ public class History implements Serializable{
     }
 
     @Override
-    public String toString(){
-        return "Товар " + product + "\nПокупатель " + customer + "\nКуплено " + purchase;
+    public String toString() {
+        return "History{" + "id=" + id + ", product=" + product + ", customer=" + customer + ", purchase=" + purchase + '}';
     }
 }

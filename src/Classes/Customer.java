@@ -56,7 +56,7 @@ public class Customer {
     }
 
     @Override
-    public String toString(){
-        return "Имя " + firstname + "\nФамилия " + surename + "\nТелефон " + phoneNumber;
+    public String toString() {
+        return "Customer{" + "id=" + id + ", firstname=" + firstname + ", surename=" + surename + ", phoneNumber=" + phoneNumber + ", wallet=" + wallet + '}';
     }
 }

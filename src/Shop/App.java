@@ -6,8 +6,6 @@ import Classes.Product;
 import Facade.CustomerFacade;
 import Facade.HistoryFacade;
 import Facade.ProductFacade;
-import Interfaces.Keeping;
-import Tools.SaverToBase;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -128,7 +126,7 @@ public class App {
         System.out.print("Фамилия: ");
         customer.setSurename(scanner.nextLine());
         System.out.print("Телефон: ");
-        customer.setphoneNumber(scanner.nextLine());
+        customer.setPhoneNumber(scanner.nextLine());
         System.out.print("Счет: ");
         customer.setWallet(inputDouble());
         

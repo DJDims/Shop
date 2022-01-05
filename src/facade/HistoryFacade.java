@@ -1,8 +1,8 @@
 
-package Facade;
+package facade;
 
-import Classes.History;
-import Tools.Singleton;
+import entitys.History;
+import tools.Singleton;
 import javax.persistence.EntityManager;
 
 public class HistoryFacade extends AbstractFacade<History>{

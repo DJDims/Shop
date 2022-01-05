@@ -1,12 +1,12 @@
 
 package gui;
 
-import Classes.Customer;
-import Classes.History;
-import Classes.Product;
-import Facade.CustomerFacade;
-import Facade.HistoryFacade;
-import Facade.ProductFacade;
+import entitys.Customer;
+import entitys.History;
+import entitys.Product;
+import facade.CustomerFacade;
+import facade.HistoryFacade;
+import facade.ProductFacade;
 import gui.components.ButtonComponent;
 import gui.components.EditComponent;
 import gui.components.LabelComponent;
@@ -92,20 +92,19 @@ public class GuiApp extends JFrame{
                         addProductInfo.getCaption().setForeground(Color.red);
                         return;
                     }
-                    product.setTitle(productName.getEditor().getText().trim());
-                    
                     if (productCategory.getEditor().getText().trim().isEmpty()) {
                         addProductInfo.getCaption().setText("Введите категорию продукта");
                         addProductInfo.getCaption().setForeground(Color.red);
                         return;
                     }
-                    product.setCategory(productCategory.getEditor().getText().trim());
-                    
                     if (productPrice.getEditor().getText().trim().isEmpty()) {
                         addProductInfo.getCaption().setText("Введите стоимость продукта");
                         addProductInfo.getCaption().setForeground(Color.red);
                         return;
                     }
+                    
+                    product.setTitle(productName.getEditor().getText().trim());
+                    product.setCategory(productCategory.getEditor().getText().trim());
                     
                     try {
                         product.setPrice(Double.parseDouble(productPrice.getEditor().getText().trim()));
@@ -156,27 +155,26 @@ public class GuiApp extends JFrame{
                         addCustomerInfo.getCaption().setForeground(Color.red);
                         return;
                     }
-                    customer.setFirstname(customerFirstname.getEditor().getText().trim());
-                    
                     if (customerSurename.getEditor().getText().trim().isEmpty()) {
                         addCustomerInfo.getCaption().setText("Введите фамилию покупателя");
                         addCustomerInfo.getCaption().setForeground(Color.red);
                         return;
                     }
-                    customer.setSurename(customerSurename.getEditor().getText().trim());
-                    
                     if (customerPhone.getEditor().getText().trim().isEmpty()) {
                         addCustomerInfo.getCaption().setText("Введите телефон покупателя");
                         addCustomerInfo.getCaption().setForeground(Color.red);
                         return;
                     }
-                    customer.setPhoneNumber(customerPhone.getEditor().getText().trim());
-                    
                     if (customerWallet.getEditor().getText().trim().isEmpty()) {
                         addCustomerInfo.getCaption().setText("Введите счет покупателя");
                         addCustomerInfo.getCaption().setForeground(Color.red);
                         return;
                     }
+                    
+                    customer.setFirstname(customerFirstname.getEditor().getText().trim());
+                    customer.setSurename(customerSurename.getEditor().getText().trim());
+                    customer.setPhoneNumber(customerPhone.getEditor().getText().trim());
+                    
                     try {
                         customer.setWallet(Double.parseDouble(customerWallet.getEditor().getText().trim()));
                     } catch (Exception e) {
@@ -223,22 +221,20 @@ public class GuiApp extends JFrame{
                         buyProductInfo.getCaption().setForeground(Color.red);
                         return;
                     }
-                    history.setCustomer(customersList.getList().getSelectedValue());
-                    
                     if (productsList.getList().isSelectionEmpty()) {
                         buyProductInfo.getCaption().setText("Выберите товар");
                         buyProductInfo.getCaption().setForeground(Color.red);
                         return;
                     }
-                    history.setProduct(productsList.getList().getSelectedValue());
-                    
                     if (history.getCustomer().getWallet() < history.getProduct().getPrice()) {
                         buyProductInfo.getCaption().setText("У покупателя недостаточно денег");
                         buyProductInfo.getCaption().setForeground(Color.red);
                         return;
                     }
-                    history.getCustomer().setWallet(history.getCustomer().getWallet() - history.getProduct().getPrice());
                     
+                    history.setCustomer(customersList.getList().getSelectedValue());
+                    history.setProduct(productsList.getList().getSelectedValue());
+                    history.getCustomer().setWallet(history.getCustomer().getWallet() - history.getProduct().getPrice());
                     history.setPurchase(localdateToDate(LocalDate.now()));
                         
                     HistoryFacade historyFacade = new HistoryFacade(History.class);

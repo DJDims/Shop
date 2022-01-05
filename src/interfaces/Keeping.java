@@ -1,9 +1,9 @@
 
-package Interfaces;
+package interfaces;
 
-import Classes.Customer;
-import Classes.History;
-import Classes.Product;
+import entitys.Customer;
+import entitys.History;
+import entitys.Product;
 import java.util.List;
 
 public interface Keeping {

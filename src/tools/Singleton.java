@@ -1,5 +1,5 @@
 
-package Tools;
+package tools;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

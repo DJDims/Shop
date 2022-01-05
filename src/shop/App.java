@@ -1,11 +1,11 @@
-package Shop;
+package shop;
 
-import Classes.Customer;
-import Classes.History;
-import Classes.Product;
-import Facade.CustomerFacade;
-import Facade.HistoryFacade;
-import Facade.ProductFacade;
+import entitys.Customer;
+import entitys.History;
+import entitys.Product;
+import facade.CustomerFacade;
+import facade.HistoryFacade;
+import facade.ProductFacade;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;

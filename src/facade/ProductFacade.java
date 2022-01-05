@@ -1,8 +1,8 @@
 
-package Facade;
+package facade;
 
-import Classes.Product;
-import Tools.Singleton;
+import entitys.Product;
+import tools.Singleton;
 import javax.persistence.EntityManager;
 
 public class ProductFacade extends AbstractFacade<Product>{

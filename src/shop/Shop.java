@@ -1,7 +1,7 @@
-package Shop;
+package shop;
 
 
-import Shop.App;
+import shop.App;
 
 
 public class Shop {

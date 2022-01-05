@@ -1,8 +1,8 @@
 
 package gui.components;
 
-import Classes.Product;
-import Facade.ProductFacade;
+import entitys.Product;
+import facade.ProductFacade;
 import gui.components.renderers.ListProductsCellRenderer;
 import java.awt.Dimension;
 import java.awt.Font;

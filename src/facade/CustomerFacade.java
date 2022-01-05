@@ -1,8 +1,8 @@
 
-package Facade;
+package facade;
 
-import Classes.Customer;
-import Tools.Singleton;
+import entitys.Customer;
+import tools.Singleton;
 import javax.persistence.EntityManager;
 
 public class CustomerFacade extends AbstractFacade<Customer>{

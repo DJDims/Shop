@@ -1,7 +1,7 @@
 
 package gui.components.renderers;
 
-import Classes.Product;
+import entitys.Product;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.DefaultListCellRenderer;
